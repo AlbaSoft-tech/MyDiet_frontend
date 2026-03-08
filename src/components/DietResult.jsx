@@ -35,7 +35,7 @@ export default function DietDashboard() {
     setIsFetching(true);
     try {
       const response = await fetch(
-        `https://mydiet-backend-jtsv.onrender.com/api/generate/fetch?code=${codeInput.trim()}`,
+        `https://api.get-my-diet.com/api/generate/fetch?code=${codeInput.trim()}`,
         { method: "GET" },
       );
       if (!response.ok) {
