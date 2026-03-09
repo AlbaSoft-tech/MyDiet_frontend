@@ -98,8 +98,8 @@ export default function DietDashboard() {
             </h2>
             {purchased && (
               <p className="text-gray-500 text-lg">
-                Please check your email and enter the code you received to load
-                your personalized diet plan.
+                Please check your email and enter the code you received. It may
+                take a minute or two for your diet plan to be generated.
               </p>
             )}
             <div className="space-y-6">
