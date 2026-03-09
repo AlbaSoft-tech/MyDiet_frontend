@@ -6,7 +6,13 @@ import DietDashboard from "./components/DietResult";
 
 export default function App() {
   const params = new URLSearchParams(window.location.search);
-  const [step, setStep] = useState(Number(params.get("step")) || 1);
+
+  const [step, setStep] = useState(() => {
+    const diet = localStorage.getItem("Diet");
+    if (diet) return 4;
+    return Number(params.get("step")) || 1;
+  });
+
   const [formData, setFormData] = useState({
     weightUnit: "kg",
     currentWeight: "",
@@ -127,7 +133,7 @@ export default function App() {
       ) : (
         /* THE DASHBOARD (Code Entry Screen) */
         <div className="w-full animate-in fade-in duration-500">
-          <DietDashboard />
+          <DietDashboard diet={JSON.parse(localStorage.getItem("Diet"))} />
         </div>
       )}
     </div>

@@ -9,8 +9,8 @@ import {
   XCircle,
 } from "lucide-react";
 
-export default function DietDashboard() {
-  const [data, setData] = useState(null);
+export default function DietDashboard({ diet }) {
+  const [data, setData] = useState(diet || null);
   const [isFetching, setIsFetching] = useState(false);
   const [expandedMeal, setExpandedMeal] = useState(0);
   const [codeInput, setCodeInput] = useState("");
@@ -45,6 +45,7 @@ export default function DietDashboard() {
       }
       const result = await response.json();
       setData(result.diet);
+      localStorage.setItem("Diet", JSON.stringify(result.diet));
     } catch (err) {
       console.error("Failed to fetch diet:", err);
       alert("Network error. Please try again.");
@@ -129,16 +130,30 @@ export default function DietDashboard() {
                 Nutrition Overview
               </h1>
             </div>
-            <button
-              onClick={() => setData(null)}
-              className="flex items-center gap-2 px-6 py-2.5 bg-white/50 hover:bg-white text-gray-600 hover:text-red-500 font-bold text-xs uppercase tracking-[0.15em] rounded-full border border-white/60 shadow-sm transition-all active:scale-95 group"
-            >
-              <XCircle
-                size={16}
-                className="text-gray-400 group-hover:text-red-500 transition-colors"
-              />
-              Change Code
-            </button>
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  localStorage.removeItem("Diet");
+                  window.location.href = "http://get-my-diet.com/";
+                }}
+                className="flex items-center gap-2 px-6 py-2.5 bg-[#7BF1A8] hover:bg-[#4ec981] text-white font-bold text-xs uppercase tracking-[0.15em] rounded-full shadow-sm transition-all active:scale-95"
+              >
+                Generate New Plan
+              </button>
+              <button
+                onClick={() => {
+                  localStorage.removeItem("Diet");
+                  setData(null);
+                }}
+                className="flex items-center gap-2 px-6 py-2.5 bg-white/50 hover:bg-white text-gray-600 hover:text-red-500 font-bold text-xs uppercase tracking-[0.15em] rounded-full border border-white/60 shadow-sm transition-all active:scale-95 group"
+              >
+                <XCircle
+                  size={16}
+                  className="text-gray-400 group-hover:text-red-500 transition-colors"
+                />
+                Change Code
+              </button>
+            </div>
           </header>
 
           {/* BIGGER TOP CARDS */}
