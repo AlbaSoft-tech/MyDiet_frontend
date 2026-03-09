@@ -53,7 +53,7 @@ export default function Step3Preferences({ data, update, onFinish, onBack }) {
               onClick={() => update({ selectedDiet: diet })}
               className={`px-4 py-2 rounded-full border text-sm transition ${
                 data.selectedDiet === diet
-                  ? "bg-green-600 border-green-600 text-white"
+                  ? "bg-green-400 border-green-400 text-white"
                   : "bg-white border-gray-300 text-gray-600"
               }`}
             >
@@ -72,7 +72,7 @@ export default function Step3Preferences({ data, update, onFinish, onBack }) {
         </button>
         <button
           onClick={onFinish}
-          className="flex-[2] bg-green-500 text-white py-4 rounded-full font-bold shadow-lg"
+          className="flex-[2] bg-green-400 text-white py-4 rounded-full font-bold shadow-lg"
         >
           Generate Diet
         </button>
